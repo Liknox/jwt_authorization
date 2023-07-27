@@ -1,0 +1,22 @@
+{
+	"dependencies": {
+		"cookie-parser": "^1.4.6",
+		"express": "^4.18.1",
+		"jsonwebtoken": "^8.5.1",
+		"nodemon": "^2.0.18"
+	},
+	"name": "jwt_backend",
+	"version": "1.0.0",
+	"main": "index.js",
+	"devDependencies": {
+		"prettier": "^3.0.0"
+	},
+	"scripts": {
+		"start": "nodemon index.js",
+		"format": "prettier --write \"src/**/*.@(js|ts|jsx|tsx|css|scss|module.css|module.scss)\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}
