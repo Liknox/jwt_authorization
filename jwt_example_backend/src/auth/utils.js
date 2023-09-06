@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken")
 const signatureAccess = "MySuP3R_z3kr3t_access"
 const signatureRefresh = "MySuP3R_z3kr3t_refresh"
 
-const accessTokenAge = 10 //s
+const accessTokenAge = 30 //s
 const refreshTokenTokenAge = 60 * 60 //s (1h)
 
 const verifyAuthorizationMiddleware = (req, res, next) => {

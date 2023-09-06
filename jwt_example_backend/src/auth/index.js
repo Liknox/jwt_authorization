@@ -29,15 +29,17 @@ authRouter.post("/login", (req, res) => {
 })
 
 authRouter.get("/refresh", verifyRefreshTokenMiddleware, (req, res) => {
-	const { accessToken, refreshToken } = getTokens(req.user.login)
+	const { accessToken } = getTokens(req.user.login)
 
-	res.setHeader(
-		"Set-Cookie",
-		cookie.serialize("refreshToken", refreshToken, {
-			httpOnly: true,
-			maxAge: 1000 * 60 * 60,
-		})
-	)
+	// res.setHeader(
+	// 	"Set-Cookie",
+	// 	cookie.serialize("refreshToken", refreshToken, {
+	// 		httpOnly: true,
+	// 		maxAge: 1000 * 60 * 60,
+	// 	})
+	// )
+   // commented in order to prevent autoChanging refreshToken on reload page
+
 	res.send({ accessToken })
 })
 

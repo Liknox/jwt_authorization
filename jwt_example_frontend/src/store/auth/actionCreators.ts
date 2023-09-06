@@ -20,7 +20,7 @@ export const loginUser = (data: ILoginRequest) => async (dispatch: Dispatch<any>
 
 			dispatch(loginFailure(e.message))
 		}
-	}
+}
 
 export const logoutUser = () => async (dispatch: Dispatch): Promise<void> => {
 		try {
@@ -35,6 +35,7 @@ export const logoutUser = () => async (dispatch: Dispatch): Promise<void> => {
 	}
 
 export const getProfile = () => async (dispatch: Dispatch<any>): Promise<void> => {
+   console.log("getProfile Func")
 		try {
 			dispatch(loadProfileStart())
 
@@ -52,6 +53,7 @@ export const getProfile = () => async (dispatch: Dispatch<any>): Promise<void> =
 let refreshTokenRequest: AxiosPromise<ILoginResponse> | null = null
 
 export const getAccessToken = () => async (dispatch: Dispatch<any>): Promise<string | null> => {
+   console.log("GetAccessToken func")
 		try {
 			const accessToken = store.getState().auth.authData.accessToken
 
@@ -60,7 +62,7 @@ export const getAccessToken = () => async (dispatch: Dispatch<any>): Promise<str
 					refreshTokenRequest = api.auth.refreshToken()
 				}
 
-				const res = await refreshTokenRequest
+				const res = await refreshTokenRequest // * when we do this request, backend specifies refreshToken in cookies and return accessToken
 				refreshTokenRequest = null
 
 				dispatch(loginSuccess(res.data.accessToken))

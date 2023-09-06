@@ -13,8 +13,12 @@ axiosInstance.interceptors.request.use(async config => {
 		return config
 	}
 
+   console.log("Interceptors")
 	const accessToken = await store.dispatch(getAccessToken())
 
+   console.log("Interceptors", "\n", accessToken)
+
+   
 	if (accessToken) {
 		const authorization = `Bearer ${accessToken}`
 
@@ -27,9 +31,7 @@ axiosInstance.interceptors.request.use(async config => {
 	return config
 })
 
-axiosInstance.interceptors.response.use(
-	response => response,
-	(error: AxiosError) => {
+axiosInstance.interceptors.response.use( response => response, (error: AxiosError) => {
 		const isLoggedIn = !!store.getState().auth.authData.accessToken
 
 		if (error.response?.status === 401 && isLoggedIn && error.request.url !== Endpoints.AUTH.LOGOUT) {
